@@ -12,30 +12,22 @@ jobs:
 #    outputs:
 #      tag_version: ${{ steps.extract_tag.outputs.tag_version }}
     steps:
-      - name: Extract tag version
+      - name: prepare test
         run: |
           echo "test"
 #          TAG_VERSION=${GITHUB_REF#refs/tags/}
 #          echo "tag_version=$TAG_VERSION" >> $GITHUB_OUTPUT
 
-#  trigger-workflows:
-#    needs: prepare
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        workflow:
-#          - name: 'deployment.yml'
-#            config:
-#              environment: 'production'
-#              deploy_config: 'prod-config-1'
-#          - name: 'deployment.yml'
-#            config:
-#              environment: 'staging'
-#              deploy_config: 'staging-config-1'
-#          - name: 'integration-tests.yml'
-#            config:
-#              test_suite: 'full'
-#              parallel_jobs: '4'
+  trigger-workflows:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [dev, stg, prod]
+    steps:
+      - name: Extract tag version
+        run: echo "matrix=${{ matrix.env }}"
+
 #
 #    steps:
 #      - name: Trigger ${{ matrix.workflow.name }}
