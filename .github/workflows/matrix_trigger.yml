@@ -25,8 +25,10 @@ jobs:
       matrix:
         env: [dev, stg, prod]
     steps:
-      - name: Extract tag version
-        run: echo "matrix=${{ matrix.env }}"
+      - name: boot other action
+        uses: ./.github/actions/deploy.yml
+        with:
+          env: ${{ matrix.env }}
 
 #
 #    steps:
