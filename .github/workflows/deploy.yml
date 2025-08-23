@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: 1st deploy
         run: |
-          echo "test deploy ${{ inputs.env }}""
+          echo "test deploy ${{ inputs.env }}"
