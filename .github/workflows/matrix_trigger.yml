@@ -19,16 +19,12 @@ jobs:
 #          echo "tag_version=$TAG_VERSION" >> $GITHUB_OUTPUT
 
   trigger-workflows:
-    needs: prepare
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         env: [dev, stg, prod]
-    steps:
-      - name: boot other action
-        uses: ./.github/actions/deploy.yml
-        with:
-          env: ${{ matrix.env }}
+    uses: ./.github/actions/deploy.yml
+    with:
+      env: ${{ matrix.env }}
 
 #
 #    steps:
