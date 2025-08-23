@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         env: [dev, stg, prod]
-    uses: ./.github/actions/deploy.yml
+    uses: ./.github/workflows/deploy.yml
     with:
       env: ${{ matrix.env }}
 
